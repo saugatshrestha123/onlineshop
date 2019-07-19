@@ -12,6 +12,7 @@ namespace Saugatshrestha.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Message = "Hello from home controller";
             return View();
         }
 
