@@ -1,0 +1,33 @@
+﻿@model  List<Order>
+@{
+    ViewData["Title"] = "Addorder";
+}
+
+<h2>Addorder</h2>
+<div class="row">
+    <div class="col col-sm-4">
+        @foreach (var i in Model)
+        {
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    Name of item=@i.Item
+                </div>
+                <div class="panel-body">
+                    <p>ID=@i.Id</p>
+                    <p>Quantity=@i.Quantity @i.Unit</p>
+                    <p>Price per item=@i.Rate</p>
+                    <p>Total Amount=@(i.Quantity*i.Rate)</p>
+                   <p>
+                       <img src="~/images/@i.Image" 
+                            height="200"
+                            width="200" class="img-rounded"/>
+                   </p>
+                </div>
+                <div class="panel-footer">
+                    <a asp-action="Index" asp-controller="Product" class="btn btn-primary">GOTO MAIN MENU</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,90 @@
+﻿@model List<Product>
+@inject  SignInManager<IdentityUser> signInManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Items Are..........</h2>
+
+@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+<div>
+    <a asp-action="New" class="btn btn-primary" asp-controller="Product">Goto New Form</a>
+</div>
+}
+
+<br/>
+
+<a class="btn btn-info" asp-action="ViewOrderDetails" asp-controller="Product">View Order Details</a>
+
+<form asp-action="Search" asp-controller="Product" method="get">
+    <div class="input-group">
+        <input type="text" id="search" name="search" class="form-control" placeholder="Enter the name of the item to be search" />
+        <div class="input-group-btn">
+            <input type="submit" id="btnsearch" class="btn btn-primary" value="Search" />
+        </div>
+    </div>
+</form>
+
+<br/>
+
+
+
+<div class="row">
+    @foreach (var p in Model)
+    {
+        <div class="col col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">@p.Item</div>
+                <div class="panel-body">
+                    <p>Id=@p.Id</p>
+                    <p>Quantity=@p.Quantity @p.Unit</p>
+                    <p>Rate=@p.Rate</p>
+                    <p>Total=@(p.Quantity * p.Rate)</p>
+                    <p>
+                        <img src="~/images/@p.ImageUrl"
+                             height="200"
+                             width="200"
+                             class="img-circle"
+                             onerror="this.onerror=null; this.src = '/images/blank_image.png';" />
+                    </p>
+                </div>
+                <div class="panel-footer">
+
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+
+                    <button class="btn btn-danger delete"
+                            data-action="Delete"
+                            data-controller="Product"
+                            data-id="@p.Id"
+                            data-body-message="Are you sure to delete this product: @p.Item">
+                        Delete
+                    </button>
+
+
+
+                    <a class="btn btn-primary" asp-action="Update" asp-controller="Product" asp-route-id="@p.Id">Update</a>
+
+                    }
+
+
+
+                    <form asp-action="Addorder" asp-controller="Product" method="get">
+                        <input type="hidden" id="ProductId" name="ProductId" value="@p.Id" />
+                        <div class="input-group">
+                            <input type="text" id="quantity" name="quantity" class="form-control" placeholder="Enter quantity" />
+                            <span class="input-group-btn">
+                                <input type="submit" value="Order" class="btn btn-success" />
+                            </span>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

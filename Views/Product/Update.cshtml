@@ -1,0 +1,36 @@
+﻿@model  Product
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h2>Update the form</h2>
+<form asp-action="Update" asp-controller="Product" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col col-sm-4 col-offset-sm-4">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Item"></label>
+                <input asp-for="Item" class="form-control" placeholder="Enter the name of item" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity"></label>
+                <input asp-for="Quantity" class="form-control" placeholder="Enter the Quantity of the items" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Unit"></label>
+                <input asp-for="Unit" class="form-control" placeholder="kg, ltr, ml, pcs,  dzn,etc" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Rate"></label>
+                <input asp-for="Rate" class="form-control" placeholder="Enter the unit price of the product" />
+            </div>
+            <div class="form-group">
+            <label>UPLOAD FILE</label>
+            <input type="file" name="file" id="file" class="btn btn-info" />
+        </div>
+            <input type="submit" class="btn btn-primary" value="Update" asp-action="Update" asp-controller="Product" />
+            <input type="submit" class="btn btn-success" value="Order" asp-action="Order" asp-controller="Order" />
+        </div>
+    </div>
+</form>
+

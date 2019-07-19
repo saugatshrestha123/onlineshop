@@ -1,0 +1,42 @@
+﻿@model  List<IdentityRole>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>All Available Roles are:</h2>
+
+<div class="row">
+    <div class="col-sm-12">
+        <a asp-action="Index" asp-controller="Admin" class="btn btn-primary">View Roles</a>
+        <a asp-action="AddRole" asp-controller="Admin" class="btn btn-info">Add New Role</a>
+        <a asp-action="AddUserToRole" asp-controller="Admin" class="btn btn-success">Add User To Role</a>
+        <a asp-action="ViewUserRoles" asp-controller="Admin" class="btn btn-primary">View User Roles</a>
+    </div>
+</div>
+
+
+@if (Model.Count == 0)
+{
+    <p>No roles found</p>
+}
+else
+{
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Name</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+}
+

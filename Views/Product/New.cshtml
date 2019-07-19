@@ -1,0 +1,41 @@
+﻿@model  Product
+@{
+    ViewData["Title"] = "New";
+}
+
+<h2>Add New items</h2>
+<a asp-action="Index" asp-controller="Product" class="btn btn-success">Goto Index</a>
+<form asp-action="Index" asp-controller="Product" method="post" enctype="multipart/form-data">
+ <div class="row">
+     <div class="col col-sm-4 col-offset-sm-4">
+         <input type="hidden" asp-for="Id" />
+         <div class="form-group">
+             <label asp-for="Item"></label>
+             <input asp-for="Item" class="form-control" placeholder="Enter the name of item" />
+             <span asp-validation-for="Item" class="text-danger"></span>
+         </div>
+         <div class="form-group">
+             <label asp-for="Quantity"></label>
+             <input asp-for="Quantity" class="form-control" placeholder="Enter the Quantity of the items" />
+             <span asp-validation-for="Quantity" class="text-danger"></span>
+         </div>
+         <div class="form-group">
+             <label asp-for="Unit"></label>
+             <input asp-for="Unit" class="form-control" placeholder="kg, ltr, ml, pcs,  dzn,etc" />
+             <span asp-validation-for="Unit" class="text-danger"></span>
+          </div>
+         <div class="form-group">
+             <label asp-for="Rate"></label>
+             <input asp-for="Rate" class="form-control" placeholder="Enter the unit price of the product" />
+             <span asp-validation-for="Rate" class="text-danger"></span>
+         </div>
+
+         <div class="form-group">
+             <label>UPLOAD FILE</label>
+             <input type="file" name="file" id="file" class="btn btn-info" />
+         </div>
+         <input type="submit" class="btn btn-primary" value="Save" asp-action="Save" asp-controller="Product" />
+     </div>
+ </div>
+</form>
+

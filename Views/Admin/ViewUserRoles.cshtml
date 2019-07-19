@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "ViewUserRoles";
+}
+
+
+@inject  UserManager<IdentityUser> userManager
+@inject  RoleManager<IdentityRole> roleManager
+
+<h2>ViewUserRoles</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>UserId</th>
+            <th>Role Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ur in ViewBag.UserRoles)
+        {
+            
+          var user = await userManager.FindByIdAsync(ur.UserId);
+          var role = await roleManager.FindByIdAsync(ur.RoleId);
+            
+
+            <tr>
+                <td>
+                    @user.UserName
+                </td>
+                <td>
+                    @role.Name
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
